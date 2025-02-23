@@ -237,7 +237,7 @@ class TestGroupSum5(unittest.TestCase):
         expected = True
         self.assertEqual(actual, expected)
 
-    def test_2(self):
+    def test_2(self): #pass
         """group_sum_5(): Target sum cannot be formed because 5 must be included"""
         start = 0
         nums = [2, 5, 10, 4]
@@ -246,7 +246,7 @@ class TestGroupSum5(unittest.TestCase):
         expected = False
         self.assertEqual(actual, expected)
 
-    def test_3(self):
+    def test_3(self):#pass
         """group_sum_5(): Cannot form because 5 must be chosen and 1 cannot be chosen"""
         start = 0
         nums = [3, 5, 1]
@@ -255,7 +255,7 @@ class TestGroupSum5(unittest.TestCase):
         expected = False
         self.assertEqual(actual, expected)
 
-    def test_4(self):
+    def test_4(self): #pass
         """group_sum_5(): 1 is after after 5 so 1 cannot be chosen"""
         start = 1
         nums = [3, 5, 1]
@@ -264,7 +264,7 @@ class TestGroupSum5(unittest.TestCase):
         expected = False
         self.assertEqual(actual, expected)
 
-    def test_5(self):
+    def test_5(self): #pass
         """group_sum_5(): 1 element, has target"""
         start = 0
         nums = [1]
@@ -273,7 +273,7 @@ class TestGroupSum5(unittest.TestCase):
         expected = True
         self.assertEqual(actual, expected)
 
-    def test_6(self):
+    def test_6(self): 
         """group_sum_5(): 1 element, target is 0"""
         start = 0
         nums = [9]
@@ -282,7 +282,7 @@ class TestGroupSum5(unittest.TestCase):
         expected = True
         self.assertEqual(actual, expected)
 
-    def test_7(self):
+    def test_7(self): #pass
         """group_sum_5(): Empty list"""
         start = 0
         nums = []

@@ -34,7 +34,7 @@ def group_sum(start, nums, target):
     if group_sum(start + 1, nums, target - nums[start]):
         return True
     else:
-        group_sum(start + 1, nums, target)
+        return group_sum(start + 1, nums, target)
 
 
 # TODO: Modify this function. You may delete this comment when you are done.
@@ -47,6 +47,22 @@ def group_sum_6(start, nums, target):
     pre: start >= 0, len(nums) >= 0, target >= 0, nums will only contain ints
     post: return True if nums has a group of ints that sum to target, False otherwise
     """
+    length = len(nums)
+    count = nums.count(6)
+    if count * 6 > target:
+        return False
+    elif count * 6 == target:
+        return True
+    else:
+        target -= count * 6
+    if target == 0:
+        return True
+    if start + 1 > length:
+        return False
+    if group_sum(start + 1, nums, target - nums[start]):
+        return True
+    else:
+        return group_sum(start + 1, nums, target)
 
 
 # TODO: Modify this function. You may delete this comment when you are done.
@@ -59,6 +75,15 @@ def group_no_adj(start, nums, target):
     pre: start >= 0, len(nums) >= 0, target >= 0, nums will only contain ints
     post: return True if nums has a group of ints that sum to target, False otherwise
     """
+    length = len(nums)
+    if target == 0:
+        return True
+    if start + 2 > length:
+        return False
+    if group_sum(start + 2, nums, target - nums[start]):
+        return True
+    else:
+        return group_sum(start + 1, nums, target)
 
 
 # TODO: Modify this function. You may delete this comment when you are done.

@@ -53,16 +53,17 @@ def group_sum_6(start, nums, target):
         return False
     elif count * 6 == target:
         return True
-    else:
+    elif 6 in nums:
         target -= count * 6
+        nums.remove(6)
     if target == 0:
         return True
     if start + 1 > length:
         return False
-    if group_sum(start + 1, nums, target - nums[start]):
+    if group_sum_6(start + 1, nums, target - nums[start]):
         return True
     else:
-        return group_sum(start + 1, nums, target)
+        return group_sum_6(start + 1, nums, target)
 
 
 # TODO: Modify this function. You may delete this comment when you are done.
@@ -77,13 +78,15 @@ def group_no_adj(start, nums, target):
     """
     length = len(nums)
     if target == 0:
-        return True
-    if start + 2 > length:
+        return True 
+    if start + 1 > length:
         return False
-    if group_sum(start + 2, nums, target - nums[start]):
+    if group_no_adj(start + 2, nums, target - nums[start]):
         return True
     else:
-        return group_sum(start + 1, nums, target)
+        return group_no_adj(start + 1, nums, target)
+
+
 
 
 # TODO: Modify this function. You may delete this comment when you are done.

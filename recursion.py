@@ -26,15 +26,11 @@ def group_sum(start, nums, target):
     pre: start >= 0, len(nums) >= 0, target >= 0, nums will only contain ints
     post: return True if nums has a group of ints that sum to target, False otherwise
     """
-    length = len(nums)
-    if target == 0:
-        return True
-    if start + 1 > length:
-        return False
+    if start + 1 > len(nums):
+        return target == 0
     if group_sum(start + 1, nums, target - nums[start]):
         return True
-    else:
-        return group_sum(start + 1, nums, target)
+    return group_sum(start + 1, nums, target)
 
 
 # TODO: Modify this function. You may delete this comment when you are done.
@@ -47,11 +43,8 @@ def group_sum_6(start, nums, target):
     pre: start >= 0, len(nums) >= 0, target >= 0, nums will only contain ints
     post: return True if nums has a group of ints that sum to target, False otherwise
     """
-    length = len(nums)
-    if target == 0:
-        return True
-    if start + 1 > length:
-        return False
+    if start + 1 > len(nums):
+        return target == 0
     if nums[start] == 6:
         if group_sum_6(start + 1, nums, target - nums[start]):
             return True
@@ -59,8 +52,7 @@ def group_sum_6(start, nums, target):
             return False
     if group_sum_6(start + 1, nums, target - nums[start]):
         return True
-    else:
-        return group_sum_6(start + 1, nums, target)
+    return group_sum_6(start + 1, nums, target)
 
 
 # TODO: Modify this function. You may delete this comment when you are done.
@@ -73,15 +65,11 @@ def group_no_adj(start, nums, target):
     pre: start >= 0, len(nums) >= 0, target >= 0, nums will only contain ints
     post: return True if nums has a group of ints that sum to target, False otherwise
     """
-    length = len(nums)
-    if target == 0:
-        return True 
-    if start + 1 > length:
-        return False
+    if start + 1 > len(nums):
+        return target == 0
     if group_no_adj(start + 2, nums, target - nums[start]):
         return True
-    else:
-        return group_no_adj(start + 1, nums, target)
+    return group_no_adj(start + 1, nums, target)
 
 
 
@@ -96,11 +84,8 @@ def group_sum_5(start, nums, target):
     pre: start >= 0, len(nums) >= 0, target >= 0, nums will only contain ints
     post: return True if nums has a group of ints that sum to target, False otherwise
     """
-    length = len(nums)
-    if target == 0:
-        return True
-    if start + 1 > length:
-        return False
+    if start + 1 > len(nums):
+        return target == 0
     if nums[start] % 5 == 0:
         if group_sum_5(start + 1, nums, target - nums[start]):
             return True
@@ -108,8 +93,7 @@ def group_sum_5(start, nums, target):
             return False
     if group_sum_5(start + 1, nums, target - nums[start]):
         return True
-    else:
-        return group_sum_5(start + 1, nums, target)
+    return group_sum_5(start + 1, nums, target)
 
 
 # TODO: Modify this function. You may delete this comment when you are done.

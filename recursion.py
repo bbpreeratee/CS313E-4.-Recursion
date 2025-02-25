@@ -118,6 +118,7 @@ def split_array(nums):
     pre: len(nums) >= 0, nums will only contain ints
     post: return True if nums can be split, False otherwise
     """
+    #add for commit
     nums_sum = sum(nums)
 
     if len(nums) == 0:
@@ -139,11 +140,10 @@ def split_array(nums):
         help_sum = help_sum + nums[index]
         if recursive_helper(index + 1, help_sum , nums_sum_update ):
             return True
-        
         help_sum = help_sum - nums[index]
 
         return recursive_helper(index + 1, help_sum, nums_sum_update - nums[index])
-    
+
     return recursive_helper(0, 0, nums_sum)
 
 
@@ -159,26 +159,26 @@ def split_odd_10(nums):
     """
     if len(nums) == 0:
         return False
-    
+
     if len(nums) == 1:
         if nums[0] % 2 == 1:
             return True
         else:
             return False
-    
+
     def recursive_helper(index, ten, odd):
         if index == len(nums):
             if odd % 2 == 1 and ten % 10 == 0:
-                return True 
+                return True
             else:
                 return False
         ten = ten + nums[index]
         if recursive_helper(index+1, ten , odd):
-            return True 
+            return True
         ten = ten - nums[index]
         odd = odd + nums[index]
         if recursive_helper(index+1, ten , odd):
-            return True 
+            return True
         return False
     return recursive_helper(0, 0 , 0)
 
@@ -203,32 +203,31 @@ def split_53(nums):
         return False
     if nums_sum % 2 != 0:
         return False
-    
+
     five_sum = 0
     three_sum = 0
     other = []
     for num in nums:
         if num % 5 == 0:
             five_sum += num
-        elif num % 3 == 0:  
+        elif num % 3 == 0:
             three_sum += num
         else:
             other.append(num)
-    
-    def recursive_helper(index, five_sum, three_sum): 
+
+    def recursive_helper(index, five_sum, three_sum):
         if index == len(other):
             if five_sum == three_sum:
-                return True 
+                return True
             else:
-                return False 
+                return False
 
         if recursive_helper(index + 1, five_sum + other[index], three_sum):
             return True
-        
+
         if recursive_helper(index + 1, five_sum, three_sum + other[index]):
             return True
-        
-        return False
-    
-    return recursive_helper(0, five_sum, three_sum)
 
+        return False
+
+    return recursive_helper(0, five_sum, three_sum)

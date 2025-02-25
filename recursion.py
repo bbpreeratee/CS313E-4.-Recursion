@@ -43,9 +43,7 @@ def group_sum_6(start, nums, target):
     if start + 1 > len(nums):
         return target == 0
     if nums[start] == 6:
-        if group_sum_6(start + 1, nums, target - nums[start]):
-            return True
-        return False
+        return bool(group_sum_6(start + 1, nums, target - nums[start]))
     if group_sum_6(start + 1, nums, target - nums[start]):
         return True
     return group_sum_6(start + 1, nums, target)
@@ -82,9 +80,7 @@ def group_sum_5(start, nums, target):
     if start + 1 > len(nums):
         return target == 0
     if nums[start] % 5 == 0:
-        if group_sum_5(start + 1, nums, target - nums[start]):
-            return True
-        return False
+        return bool(group_sum_5(start + 1, nums, target - nums[start]))
     if group_sum_5(start + 1, nums, target - nums[start]):
         return True
     return group_sum_5(start + 1, nums, target)
@@ -177,23 +173,17 @@ def split_odd_10(nums):
         return False
 
     if len(nums) == 1:
-        if nums[0] % 2 == 1:
-            return True
-        return False
+        return bool(nums[0] % 2 == 1)
 
     def recursive_helper(index, ten, odd):
         if index == len(nums):
-            if odd % 2 == 1 and ten % 10 == 0:
-                return True
-            return False
+            return bool(odd % 2 == 1 and ten % 10 == 0)
         ten = ten + nums[index]
         if recursive_helper(index+1, ten , odd):
             return True
         ten = ten - nums[index]
         odd = odd + nums[index]
-        if recursive_helper(index+1, ten , odd):
-            return True
-        return False
+        return bool(recursive_helper(index+1, ten , odd))
     return recursive_helper(0, 0 , 0)
 
 
@@ -231,16 +221,11 @@ def split_53(nums):
 
     def recursive_helper(index, five_sum, three_sum):
         if index == len(other):
-            if five_sum == three_sum:
-                return True
-            return False
+            return bool(five_sum == three_sum)
 
         if recursive_helper(index + 1, five_sum + other[index], three_sum):
             return True
 
-        if recursive_helper(index + 1, five_sum, three_sum + other[index]):
-            return True
-
-        return False
+        return bool(recursive_helper(index + 1, five_sum, three_sum + other[index]))
 
     return recursive_helper(0, five_sum, three_sum)

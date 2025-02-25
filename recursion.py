@@ -77,9 +77,13 @@ def group_sum_5(start, nums, target):
     pre: start >= 0, len(nums) >= 0, target >= 0, nums will only contain ints
     post: return True if nums has a group of ints that sum to target, False otherwise
     """
-    if start + 1 > len(nums):
+    length = len(nums)
+    if start + 1 > length:
         return target == 0
     if nums[start] % 5 == 0:
+        if nums[start] != length - 1:
+            if nums[start + 1] == 1:
+                return bool(group_sum_5(start + 2, nums, target - nums[start]))
         return bool(group_sum_5(start + 1, nums, target - nums[start]))
     if group_sum_5(start + 1, nums, target - nums[start]):
         return True
@@ -202,7 +206,7 @@ def split_53(nums):
     """
     nums_sum = sum(nums)
     if len(nums) == 0:
-        return False
+        return True
     if len(nums) == 1:
         return False
     if nums_sum % 2 != 0:

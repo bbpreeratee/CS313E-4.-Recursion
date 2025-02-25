@@ -45,8 +45,7 @@ def group_sum_6(start, nums, target):
     if nums[start] == 6:
         if group_sum_6(start + 1, nums, target - nums[start]):
             return True
-        else:
-            return False
+        return False
     if group_sum_6(start + 1, nums, target - nums[start]):
         return True
     return group_sum_6(start + 1, nums, target)
@@ -85,8 +84,7 @@ def group_sum_5(start, nums, target):
     if nums[start] % 5 == 0:
         if group_sum_5(start + 1, nums, target - nums[start]):
             return True
-        else:
-            return False
+        return False
     if group_sum_5(start + 1, nums, target - nums[start]):
         return True
     return group_sum_5(start + 1, nums, target)
@@ -181,15 +179,13 @@ def split_odd_10(nums):
     if len(nums) == 1:
         if nums[0] % 2 == 1:
             return True
-        else:
-            return False
+        return False
 
     def recursive_helper(index, ten, odd):
         if index == len(nums):
             if odd % 2 == 1 and ten % 10 == 0:
                 return True
-            else:
-                return False
+            return False
         ten = ten + nums[index]
         if recursive_helper(index+1, ten , odd):
             return True
@@ -237,8 +233,7 @@ def split_53(nums):
         if index == len(other):
             if five_sum == three_sum:
                 return True
-            else:
-                return False
+            return False
 
         if recursive_helper(index + 1, five_sum + other[index], three_sum):
             return True

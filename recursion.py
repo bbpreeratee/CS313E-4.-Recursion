@@ -16,8 +16,6 @@ UT EID 1: pr25257
 UT EID 2: snz298
 """
 
-
-# TODO: Modify this function. You may delete this comment when you are done.
 def group_sum(start, nums, target):
     """
     Given a list of ints, determine if there exists a group of some ints that sum to the
@@ -33,7 +31,6 @@ def group_sum(start, nums, target):
     return group_sum(start + 1, nums, target)
 
 
-# TODO: Modify this function. You may delete this comment when you are done.
 def group_sum_6(start, nums, target):
     """
     Given a list of ints, determine if there exists a group of some ints that sum to the
@@ -55,7 +52,7 @@ def group_sum_6(start, nums, target):
     return group_sum_6(start + 1, nums, target)
 
 
-# TODO: Modify this function. You may delete this comment when you are done.
+
 def group_no_adj(start, nums, target):
     """
     Given a list of ints, determine if there exists a group of some ints that sum to
@@ -74,7 +71,6 @@ def group_no_adj(start, nums, target):
 
 
 
-# TODO: Modify this function. You may delete this comment when you are done.
 def group_sum_5(start, nums, target):
     """
     Given a list of ints, determine if there exists a group of some ints that sum to
@@ -96,7 +92,6 @@ def group_sum_5(start, nums, target):
     return group_sum_5(start + 1, nums, target)
 
 
-# TODO: Modify this function. You may delete this comment when you are done.
 def group_sum_clump(start, nums, target):
     """
     Given a list of ints, determine if there exists a group of some ints that sum to
@@ -108,11 +103,12 @@ def group_sum_clump(start, nums, target):
     pre: start >= 0, len(nums) >= 0, target >= 0, nums will only contain ints
     post: return True if nums has a group of ints that sum to target, False otherwise
     """
+    pass
 
 
 
 
-# TODO: Modify this function
+
 def split_array(nums):
     """
     Given a list of ints, determine if the numbers can be split evenly into two groups
@@ -122,37 +118,36 @@ def split_array(nums):
     pre: len(nums) >= 0, nums will only contain ints
     post: return True if nums can be split, False otherwise
     """
-    if len(nums) == 0:
-        return True 
-    if len(nums) == 1 :
-        return False 
-    
-    else:
-        nums_sum = sum(nums)
-        
-        if nums_sum % 2 != 0:
-            return False
-        
-        for num in nums:
-            if num == nums_sum / 2:
-                return True
+    nums_sum = sum(nums)
 
-        for num in nums:
-            remain = (nums_sum / 2) - num
-            for num in nums[1:]:
-                if num == remain:
-                    return True
-                
-        total = 0
-        for num in nums:
-            total += num
-            if total == (nums_sum /2):
-                return True
-        
+    if len(nums) == 0:
+        return True
+    if len(nums) == 1:
+        return False
+    if nums_sum % 2 != 0:
         return False
 
+    def recursive_helper(index, help_sum, nums_sum_update):
+        #print(index, help_sum, nums_sum_update)
+        if help_sum > nums_sum / 2:
+            return False
+        if help_sum == nums_sum / 2:
+            return True
+        if index >= len(nums):
+            return False
 
-# TODO: Modify this function. You may delete this comment when you are done.
+        help_sum = help_sum + nums[index]
+        if recursive_helper(index + 1, help_sum , nums_sum_update ):
+            return True
+        
+        help_sum = help_sum - nums[index]
+
+        return recursive_helper(index + 1, help_sum, nums_sum_update - nums[index])
+    
+    return recursive_helper(0, 0, nums_sum)
+
+
+
 def split_odd_10(nums):
     """
     Given a list of ints, determine if the numbers can be split evenly into two groups
@@ -162,11 +157,34 @@ def split_odd_10(nums):
     pre: len(nums) >= 0, nums will only contain ints
     post: return True if nums can be split, False otherwise
     """
+    if len(nums) == 0:
+        return False
+    
+    if len(nums) == 1:
+        if nums[0] % 2 == 1:
+            return True
+        else:
+            return False
+    
+    def recursive_helper(index, ten, odd):
+        if index == len(nums):
+            if odd % 2 == 1 and ten % 10 == 0:
+                return True 
+            else:
+                return False
+        ten = ten + nums[index]
+        if recursive_helper(index+1, ten , odd):
+            return True 
+        ten = ten - nums[index]
+        odd = odd + nums[index]
+        if recursive_helper(index+1, ten , odd):
+            return True 
+        return False
+    return recursive_helper(0, 0 , 0)
 
 
 
 
-# TODO: Modify this function. You may delete this comment when you are done.
 def split_53(nums):
     """
     Given a list of ints, determine if the numbers can be split evenly into two groups
@@ -178,3 +196,39 @@ def split_53(nums):
     pre: len(nums) >= 0, nums will only contain ints
     post: return True if nums can be split, False otherwise
     """
+    nums_sum = sum(nums)
+    if len(nums) == 0:
+        return False
+    if len(nums) == 1:
+        return False
+    if nums_sum % 2 != 0:
+        return False
+    
+    five_sum = 0
+    three_sum = 0
+    other = []
+    for num in nums:
+        if num % 5 == 0:
+            five_sum += num
+        elif num % 3 == 0:  
+            three_sum += num
+        else:
+            other.append(num)
+    
+    def recursive_helper(index, five_sum, three_sum): 
+        if index == len(other):
+            if five_sum == three_sum:
+                return True 
+            else:
+                return False 
+
+        if recursive_helper(index + 1, five_sum + other[index], three_sum):
+            return True
+        
+        if recursive_helper(index + 1, five_sum, three_sum + other[index]):
+            return True
+        
+        return False
+    
+    return recursive_helper(0, five_sum, three_sum)
+

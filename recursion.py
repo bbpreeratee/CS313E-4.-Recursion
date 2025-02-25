@@ -77,11 +77,10 @@ def group_sum_5(start, nums, target):
     pre: start >= 0, len(nums) >= 0, target >= 0, nums will only contain ints
     post: return True if nums has a group of ints that sum to target, False otherwise
     """
-    length = len(nums)
-    if start + 1 > length:
+    if start + 1 > len(nums):
         return target == 0
     if nums[start] % 5 == 0:
-        if nums[start] != length - 1:
+        if start + 1 < len(nums):
             if nums[start + 1] == 1:
                 return bool(group_sum_5(start + 2, nums, target - nums[start]))
         return bool(group_sum_5(start + 1, nums, target - nums[start]))

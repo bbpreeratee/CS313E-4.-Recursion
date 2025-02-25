@@ -103,9 +103,27 @@ def group_sum_clump(start, nums, target):
     pre: start >= 0, len(nums) >= 0, target >= 0, nums will only contain ints
     post: return True if nums has a group of ints that sum to target, False otherwise
     """
-    pass
-
-
+    length = len(nums)
+    if start + 1 > length:
+        return target == 0
+    if start + 1 < length:
+        consecutive = True
+        count = 1
+        s = start
+        while consecutive:
+            if nums[s] == nums[s + 1]:
+                count += 1
+                s += 1
+            else:
+                consecutive = False
+            if s + 1 == length:
+                consecutive = False
+        if group_sum_clump(start + count, nums, target - nums[start] * count):
+            return True
+        return group_sum_clump(start + count, nums, target)
+    if group_sum_clump(start + 1, nums, target - nums[start]):
+        return True
+    return group_sum_clump(start + 1, nums, target)
 
 
 
